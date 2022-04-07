@@ -1,0 +1,46 @@
+<div class="empty-cart-message" *ngIf="order.orderedProducts.size == 0">Your cart is empty</div>
+
+<div class="cart-container" *ngIf="order.orderedProducts.size != 0">	
+	<div class="cart-panel">
+		<app-cart-item *ngFor="let product of productsInOrder" [product]="product" [quantity]="order.orderedProducts.get(product.id)" (setOrderQuantity)="changeOrder($event)">		
+		</app-cart-item>
+		<h1>Total: ${{total | number:'1.2-2'}} </h1>	
+	</div>
+	<div class="cart-panel">
+		<form #form="ngForm" (ngSubmit)="submitUser()">		
+			Full name <br>
+			<input type="text" name="name" required minlength="2" [(ngModel)]="user.name" placeholder="(minimum 2 characters)" #name="ngModel">
+			<br> Address <br>
+			<input type="text" name="address" required minlength="6" [(ngModel)]="user.address" placeholder="(minimum 6 characters)" #address="ngModel">
+			<br> Credit Card Number <br>
+			<input type="text" name="ccnum" required pattern="(\d{4}(\s|\-)?){3}\d{4}" [(ngModel)]="user.ccnum" placeholder="16 digit number" #ccnum="ngModel">
+			<br> <small>We'll never share your payment details with anyone else.</small> <br>
+			<button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+		</form>
+		<!--The next three divs are alerts for the three fields of the form-->
+		<div class="alert alert-warning" role="alert" *ngIf="name.invalid && name.dirty">
+			<div *ngIf="name.errors?.['required']">
+			  Please enter your full name.
+			</div>
+			<div *ngIf="name.errors?.['minlength']">
+			  Your name must be at least two characters.
+			</div>
+		</div> 
+		<div class="alert alert-warning" role="alert" *ngIf="address.invalid && address.dirty">
+			<div *ngIf="address.errors?.['required']">
+			  Please enter your address.
+			</div>
+			<div *ngIf="address.errors?.['minlength']">
+			  Your address must be at least six characters.
+			</div>
+		</div>
+		<div class="alert alert-warning" role="alert" *ngIf="ccnum.invalid && ccnum.dirty">
+			<div *ngIf="ccnum.errors?.['required']">
+			  Please enter your credit card number.
+			</div>  
+			<div *ngIf="ccnum.errors?.['pattern']">
+			  Please enter sixteen digits for your credit card number.  <br> You can separate groups of four digits with a dash or a space.
+			</div>
+		</div>     	 
+	</div>
+</div>

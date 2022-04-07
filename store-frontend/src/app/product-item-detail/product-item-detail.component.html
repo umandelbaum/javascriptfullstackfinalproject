@@ -1,0 +1,27 @@
+<div class="detail-container">
+	<img src={{product.url}}>
+	<div class="detail-item">
+		<h1 >{{product.name}} </h1>
+		<h4 >${{product.price}} </h4>	
+		<p>{{product.description}} </p>
+		<form class="select-input" (ngSubmit)="addOrder()">
+			<mat-form-field appearance="fill">		
+				<mat-select [(value)]="quantity" aria-placeholder="1">		  
+				<mat-option value="1">1</mat-option>
+				<mat-option value="2">2</mat-option>
+				<mat-option value="3">3</mat-option>
+				<mat-option value="4">4</mat-option>		  
+				<mat-option value="5">5</mat-option>
+				<mat-option value="6">6</mat-option>
+				<mat-option value="7">7</mat-option>
+				<mat-option value="8">8</mat-option>
+				<mat-option value="9">9</mat-option>
+				<mat-option value="10">10</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<br>
+			<input type="submit" value="Add to Cart" class="btn btn-primary">
+		</form>
+		<a routerLink="/">⬅️ Back to Product List</a>
+	</div>
+</div>

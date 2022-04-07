@@ -1,0 +1,13 @@
+<div class="cart-item">  		
+	<img src={{product.url}}>
+	<div class="cart-item-details">
+		<p>{{product.name}} </p>
+		<p>${{product.price}} </p>
+		<form class="number-input" (ngSubmit)="removeOrder()">
+			Amount: <input type="number" name="amount" value="{{quantity}}" [(ngModel)]="quantity" (ngModelChange)="changeOrder()" min="0"/>
+			<br>
+			<input type="submit" value="Remove Item from Cart" class="btn btn-primary">
+		</form>
+	</div>
+	<br>
+</div>
