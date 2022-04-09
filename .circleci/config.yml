@@ -4,10 +4,7 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.0.0
 jobs:
-  build:
-    filters:
-      branches:
-        only: main.
+  build:    
     docker:
       # the base image can run most needed actions with orbs
       - image: "cimg/base:stable"
@@ -51,5 +48,13 @@ jobs:
           name: Deploy the API
           command: |
             npm run deploy_api
+
+workflows:
+  -runfullpipeline:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: main
       
         
