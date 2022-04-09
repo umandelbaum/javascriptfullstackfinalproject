@@ -1,5 +1,13 @@
 
 {
-    "scripts": {},
+    "scripts": {
+        "install_frontend": "cd store-frontend && npm install",
+        "install_api": "cd store-backend && npm install",
+        "test_frontend": "cd store-frontend && npm run test",
+        "build_frontend": "cd store-frontend && npm run build",
+        "build_api": "cd store-backend && npm run build",
+        "deploy_frontend": "cd store-frontend && npm run deploy",
+        "deploy_api": "cd store-backend && npm run deploy"
+    },
     "devDependencies": {}
 }

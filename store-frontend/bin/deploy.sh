@@ -1,0 +1,1 @@
+aws s3 cp ./dist/my-store s3://udagrambucket1234/ --recursive

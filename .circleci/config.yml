@@ -1,0 +1,50 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+  eb: circleci/aws-elastic-beanstalk@2.0.1
+  aws-cli: circleci/aws-cli@3.0.0
+jobs:
+  build:
+    docker:
+      # the base image can run most needed actions with orbs
+      - image: "cimg/base:stable"
+    steps:
+      - node/install
+      - checkout 
+      # install dependencies in both apps
+      - run:
+          name: Install Front End Dependencies
+          command: |
+            npm run install_frontend
+      - run:          
+          name: Install API Dependencies
+          command: |
+            npm run install_api
+      #Conduct Continuous Integration Test and Build 
+      - run:          
+          name: Test Front End
+          command: |
+            npm run test_frontend
+      - run:          
+          name: Test Back End
+          command: |
+            npm run test_api
+      - run:          
+          name: Build Front End
+          command: |
+            npm run build_frontend
+      - run:          
+          name: Build the API
+          command: |
+            npm run build_api
+      #Conduct Continuous Deployment
+      - run:          
+          name: Deploy Front End
+          command: |
+            npm run deploy_frontend
+      - run:          
+          name: Deploy the API
+          command: |
+            npm run deploy_api
+      
+        
