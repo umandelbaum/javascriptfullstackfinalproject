@@ -5,6 +5,10 @@ orbs:
   aws-cli: circleci/aws-cli@3.0.0
 jobs:
   build:
+    filter:
+      branches:
+        only:
+          /master\/.
     docker:
       # the base image can run most needed actions with orbs
       - image: "cimg/base:stable"
